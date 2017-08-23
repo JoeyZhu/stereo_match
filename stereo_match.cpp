@@ -150,6 +150,7 @@ int main(int argc, char** argv)
         for(;;)
         {
             capture >> frame;
+            cv::cvtColor(frame, frame, COLOR_BGR2GRAY);
             left_img = frame(Rect(0,0, frame.cols / 2, frame.rows));
             right_img = frame(Rect(frame.cols / 2, 0, frame.cols / 2, frame.rows));
             if( frame.empty() )
