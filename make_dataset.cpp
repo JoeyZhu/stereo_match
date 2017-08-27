@@ -25,7 +25,7 @@
 using namespace cv;
 
 
-static char g_format[12] = "jpg";
+static char g_format[12] = "bmp";
 
 bool isLegalPath(const char *imgs_path) {
     if (NULL == imgs_path) {
@@ -93,7 +93,13 @@ int main(int argc, char** argv)
         system(mkdir_cmd.append(cam1_path).c_str());
     }
 
-    int file_no = 10000;
+    long long  file_no = 1000000000;
+
+    std::string image_list_path(imgs_path);
+    image_list_path.append("image_list.xml");
+    FileStorage fs(image_list_path, FileStorage::WRITE);
+
+    fs << "imagelist" << "[" ;
 
     while (img_num--) {
         sprintf(sbs_img_path, "%s/%s", imgs_path, file_list[img_num]->d_name);
@@ -110,9 +116,12 @@ int main(int argc, char** argv)
         ss << file_no;
         cam0_file.append(ss.str());
         cam1_file.append(ss.str());
-        file_no += 1000;
-        imwrite(cam0_file.append(".jpg"), left_img);
-        imwrite(cam1_file.append(".jpg"), right_img);
+        file_no += 10;
+        imwrite(cam0_file.append(".bmp"), left_img);
+        imwrite(cam1_file.append(".bmp"), right_img);
+
+        fs << cam0_file;
+        fs << cam1_file;
 
         imshow("input", left_img);
 
@@ -127,7 +136,8 @@ int main(int argc, char** argv)
         	break;
         }
     }
-
+    fs << "]";
+    fs.release();
     destroyAllWindows();
 
     return 0;
