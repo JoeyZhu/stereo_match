@@ -140,13 +140,14 @@ int main(int argc, char** argv)
     if( capture.isOpened() )
     {
         std::cout << "Video capturing has been started ..." << std::endl;
-//        capture.set(CV_CAP_PROP_FRAME_WIDTH,2560);    //  1280x720
-//        capture.set(CV_CAP_PROP_FRAME_HEIGHT,720);
-        capture.set(CV_CAP_PROP_FRAME_WIDTH,1280);  //640x480
-        capture.set(CV_CAP_PROP_FRAME_HEIGHT,480);
-        //capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('M','J','P','G'));
-        capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('Y','U','Y','V'));
-        //capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('Y','V','1','2'));
+        capture.set(CV_CAP_PROP_FRAME_WIDTH,2560);    //  1280x720
+        capture.set(CV_CAP_PROP_FRAME_HEIGHT,720);
+        capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('M','J','P','G'));
+//        capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('Y','V','1','2'));
+//        capture.set(CV_CAP_PROP_FRAME_WIDTH,1280);  //640x480
+//        capture.set(CV_CAP_PROP_FRAME_HEIGHT,480);
+//        capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('Y','U','Y','V'));
+
         for(;;)
         {
             capture >> frame;
@@ -168,17 +169,6 @@ int main(int argc, char** argv)
 
             Mat img1 = left_img;
             Mat img2 = right_img;
-
-            if (img1.empty())
-            {
-                printf("Command-line parameter error: could not load the first input image file\n");
-                return -1;
-            }
-            if (img2.empty())
-            {
-                printf("Command-line parameter error: could not load the second input image file\n");
-                return -1;
-            }
 
             if (scale != 1.f)
             {
