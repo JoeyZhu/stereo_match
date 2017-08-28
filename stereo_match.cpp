@@ -53,14 +53,14 @@ int main(int argc, char** argv)
 
     enum { STEREO_BM=0, STEREO_SGBM=1, STEREO_HH=2, STEREO_VAR=3, STEREO_3WAY=4 };
     int alg = STEREO_SGBM;
-    int SADWindowSize, numberOfDisparities;
+    int SADWindowSize, numberOfDisparities, device_no;
     bool no_display;
     float scale;
 
     Ptr<StereoBM> bm = StereoBM::create(16,9);
     Ptr<StereoSGBM> sgbm = StereoSGBM::create(0,16,3);
     cv::CommandLineParser parser(argc, argv,
-        "{help h||}{algorithm||}{max-disparity|0|}{blocksize|0|}{no-display||}{scale|1|}{i||}{e||}{o||}{p||}");
+        "{help h||}{algorithm||}{max-disparity|0|}{blocksize|0|}{no-display||}{scale|1|}{i||}{e||}{o||}{p||}{device_no|0|}");
     if(parser.has("help"))
     {
         print_help();
@@ -78,6 +78,7 @@ int main(int argc, char** argv)
     numberOfDisparities = parser.get<int>("max-disparity");
     SADWindowSize = parser.get<int>("blocksize");
     scale = parser.get<float>("scale");
+    device_no = parser.get<int>("device_no");
     no_display = parser.has("no-display");
     if( parser.has("i") )
         intrinsic_filename = parser.get<std::string>("i");
@@ -133,7 +134,7 @@ int main(int argc, char** argv)
     //capture image from stereo cam
     VideoCapture capture;
     Mat frame, left_img, right_img;
-    if(!capture.open(0)){
+    if(!capture.open(device_no)){
         std::cout << "Capture from camera 0 didn't work" << std::endl;
         return -1;
     }

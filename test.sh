@@ -1,1 +1,1 @@
-./stereo_match --blocksize=5 --max-disparity=64 -i=../intrinsics.yml -e=../extrinsics.yml --scale=1.0 --algorithm=sgbm
+./stereo_match --blocksize=11 --max-disparity=96 -i=intrinsics.yml -e=extrinsics.yml --scale=0.5 --algorithm=sgbm --device_no=1
