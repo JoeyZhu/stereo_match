@@ -71,7 +71,7 @@ int main(int argc, char** argv)
     dirent **file_list = NULL;
 
     if (!isLegalPath(imgs_path)) {
-        printf("Image folder incorrect.\n");
+        printf("Image folder incorrect. full path should be provided\n");
         return -1;
     }
 
