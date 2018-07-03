@@ -8,7 +8,9 @@ find_package(Boost COMPONENTS system filesystem REQUIRED)
 
 add_executable(stereo_match stereo_match.cpp)
 add_executable(make_dataset make_dataset.cpp)
+add_executable(stereo_calib stereo_calib.cpp)
 
 target_link_libraries(stereo_match ${OpenCV_LIBS})
 target_link_libraries(make_dataset ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(stereo_calib ${OpenCV_LIBS})
 
