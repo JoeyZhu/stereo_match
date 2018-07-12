@@ -141,8 +141,8 @@ int main(int argc, char** argv)
     if( capture.isOpened() )
     {
         std::cout << "Video capturing has been started ..." << std::endl;
-        capture.set(CV_CAP_PROP_FRAME_WIDTH,1280);    //  1280x720
-        capture.set(CV_CAP_PROP_FRAME_HEIGHT,480);
+        capture.set(CV_CAP_PROP_FRAME_WIDTH,2560);    //  1280x720
+        capture.set(CV_CAP_PROP_FRAME_HEIGHT,720);
         capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('M','J','P','G'));
 //        capture.set(CV_CAP_PROP_FOURCC,CV_FOURCC('Y','V','1','2'));
 //        capture.set(CV_CAP_PROP_FRAME_WIDTH,1280);  //640x480

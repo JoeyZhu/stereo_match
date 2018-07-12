@@ -50,7 +50,7 @@ static int print_help()
             "         matrix separately) stereo. \n"
             " Calibrate the cameras and display the\n"
             " rectified results along with the computed disparity images.   \n" << endl;
-    cout << "Usage:\n ./stereo_calib -w=<board_width default=9> -h=<board_height default=6> -s=<square_size default=1.0> <image list XML/YML file default=../data/stereo_calib.xml>\n" << endl;
+    cout << "Usage:\n ./stereo_calib -w=<board_width default=9> -h=<board_height default=6> -s=<square_size default=1.0 in meter> <image list XML/YML file default=../data/stereo_calib.xml>\n" << endl;
     return 0;
 }
 
