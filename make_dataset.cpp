@@ -12,6 +12,8 @@
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/core/utility.hpp"
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <stdio.h>
 #include <dirent.h>
@@ -71,7 +73,7 @@ int main(int argc, char** argv)
     dirent **file_list = NULL;
 
     if (!isLegalPath(imgs_path)) {
-        printf("Image folder incorrect. full path should be provided\n");
+        printf("Image folder incorrect. full path should be provided with / and mkdir cam0 and cam1 manually\n");
         return -1;
     }
 
@@ -83,8 +85,8 @@ int main(int argc, char** argv)
     }
 
     //  make output dir
-    sprintf(cam0_path, "%s%s", imgs_path, "cam0/");
-    sprintf(cam1_path, "%s%s", imgs_path, "cam1/");
+    sprintf(cam0_path, "%s%s", imgs_path, "/cam0/");
+    sprintf(cam1_path, "%s%s", imgs_path, "/cam1/");
 
     if (!boost::filesystem::exists(cam0_path)) {
     	std::string mkdir_cmd = "mkdir ";
@@ -96,7 +98,7 @@ int main(int argc, char** argv)
     long long  file_no = 1000000000;
 
     std::string image_list_path(imgs_path);
-    image_list_path.append("image_list.xml");
+    image_list_path.append("/image_list.xml");
     FileStorage fs(image_list_path, FileStorage::WRITE);
 
     fs << "imagelist" << "[" ;
